@@ -4,9 +4,27 @@ const { exec } = require('child_process');
 const path = require('path');
 const livereload = require('livereload');
 const connectLivereload = require('connect-livereload');
+const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
+
+const downloadsDir = path.join(__dirname, 'downloads');
+
+function clearDownloadsFolder() {
+    fs.readdir(downloadsDir, (err, files) => {
+        if (err) throw err;
+
+        for (const file of files) {
+            fs.unlink(path.join(downloadsDir, file), err => {
+                if (err) throw err;
+            });
+        }
+    });
+}
+
+// Limpar a pasta downloads no início do servidor
+clearDownloadsFolder();
 
 // Configurar livereload
 const liveReloadServer = livereload.createServer();
