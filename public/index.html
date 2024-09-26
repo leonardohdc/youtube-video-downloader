@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader de Vídeo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Baixar Vídeo do YouTube</h1>
+    <form id="downloadForm">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <label for="url">URL do vídeo:</label>
+            <button id="clearButton" class="clear-button" style="margin-left: 10px;">Limpar</button>
+        </div>
+
+        <input type="text" id="url" required placeholder="URL...">
+
+        <div class="media-quality-container">
+            <div>
+                <label for="mediaType">Tipo de Mídia:</label>
+                <select id="mediaType" required>
+                    <option value="video">Vídeo</option>
+                    <option value="audio">Áudio</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="quality">Qualidade:
+                    <span class="info-icon">?
+                        <span class="tooltip">Se a qualidade escolhida não estiver disponível, será baixada a melhor
+                            qualidade
+                            inferior. Por exemplo: 480p → 360p</span>
+                    </span>
+                </label>
+
+                <select id="quality" required>
+                    <option value="best">A melhor possível</option>
+                    <option value="2160">2160p (4K)</option>
+                    <option value="1440">1440p (2K)</option>
+                    <option value="1080">1080p (Full HD)</option>
+                    <option value="720">720p (HD)</option>
+                    <option value="480">480p (SD)</option>
+                    <option value="360">360p</option>
+                    <option value="240">240p</option>
+                    <option value="144">144p</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="downloadButton" type="submit" disabled>Baixar</button>
+    </form>
+
+    <div id="notification">Download concluído com sucesso!</div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

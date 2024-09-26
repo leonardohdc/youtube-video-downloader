@@ -1,0 +1,148 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+#downloadForm {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 600px;
+    /* Aumentar a largura do formulário */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.info-icon {
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #007BFF;
+    cursor: pointer;
+    position: relative;
+}
+
+.info-icon:hover .tooltip {
+    display: block;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#notification.show {
+    opacity: 1;
+}
+
+#notification.error {
+    background-color: #f44336;
+}
+
+.clear-button {
+    background-color: #add8e6;
+    /* Azul claro */
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+    /* Adicione esta linha para espaçamento */
+}
+
+.clear-button:hover {
+    background-color: #87ceeb;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Novo estilo para alinhar tipo de mídia e qualidade lado a lado */
+.media-quality-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    /* Espaçamento inferior */
+}
+
+.media-quality-container>div {
+    flex: 1;
+    /* Fazer cada div ocupar 50% da largura */
+    margin-right: 10px;
+    /* Espaçamento entre os campos */
+}
+
+.media-quality-container>div:last-child {
+    margin-right: 0;
+    /* Remover o espaçamento do último item */
+}

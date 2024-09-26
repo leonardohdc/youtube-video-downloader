@@ -1,0 +1,19 @@
+# Ignorar a pasta node_modules
+node_modules/
+
+# Ignorar tudo na pasta downloads
+downloads/
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos de ambiente
+.env
+
+# Ignorar arquivos de configuração de IDE
+.idea/
+.vscode/
+
+# Ignorar builds
+dist/
+build/
