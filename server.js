@@ -2,9 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { exec } = require('child_process');
 const path = require('path');
+const livereload = require('livereload');
+const connectLivereload = require('connect-livereload');
 
 const app = express();
 const PORT = 3000;
+
+// Configurar livereload
+const liveReloadServer = livereload.createServer();
+liveReloadServer.watch(path.join(__dirname, 'public'));
+
+app.use(connectLivereload());
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -81,4 +89,11 @@ app.post('/download', async (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
+});
+
+// Notificar livereload sobre mudanças
+liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+        liveReloadServer.refresh("/");
+    }, 100);
 });
