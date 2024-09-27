@@ -2,7 +2,7 @@
 node_modules/
 
 # Ignorar tudo na pasta downloads
-downloads/
+# downloads/
 
 # Ignorar arquivos de log
 *.log
