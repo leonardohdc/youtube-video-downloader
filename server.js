@@ -118,7 +118,7 @@ app.post('/download', async (req, res) => {
 
     try {
         const outputFileName = await downloadMedia(url, quality, mediaType);
-        res.json({ message: `Download do ${mediaType} "${outputFileName}" concluído com sucesso!` });
+        res.json({ message: `Download do ${mediaType} "${outputFileName}" concluído com sucesso! Ele está salvo na pasta downloads do projeto` });
     } catch (error) {
         console.error(`Erro: ${error}`);
         res.status(500).json({ error: `Falha ao baixar o ${mediaType}. "${url}". Verifique a URL e a qualidade.` });
