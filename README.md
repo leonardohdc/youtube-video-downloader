@@ -36,3 +36,6 @@
    - aguarde ele instalar as dependencias
    - escreva o comando npm start
    - acesse em seu navegador a url http://localhost:3000
+
+5. **Final**:
+   - Depois de instalar as dependências, não é mais necessário abrir o script "instalar_dependencias.bat" para utilizar o programa, apenas o "iniciar_servidor.bat" ou então o comando "npm start" no prompt de comando no diretorio do projeto.
