@@ -39,6 +39,8 @@
    - Abra um Prompt de comando do Windows e navegue até o projeto
    - escreva o comando: npm install
    - aguarde ele instalar as dependencias
+   - escreva o comando: pip install yt-dlp
+   - aguarde ele instalar o yt-dlp
    - escreva o comando npm start
    - acesse em seu navegador a url http://localhost:3000
 
