@@ -26,6 +26,8 @@
 
    - Clique duas vezes no arquivo `instalar_dependencias.bat`.
    - Clique duas vezes no arquivo `iniciar_servidor.bat`.
+   - O servidor será iniciado e o navegador abrirá automaticamente na URL `http://localhost:3000`
+   caso não abra a guia do navegador sozinho, acesse a url manualmente `http://localhost:3000`
 
    (Caso não tenha conseguido abrir os Scripts - Siga os passos abaixo)
    - Abra um Prompt de comando do Windows e navegue até o projeto
@@ -33,5 +35,3 @@
    - aguarde ele instalar as dependencias
    - escreva o comando npm start
    - acesse em seu navegador a url http://localhost:3000
-
-O servidor será iniciado e o navegador abrirá automaticamente na URL `http://localhost:3000`, caso não abra a guia do navegador sozinho, acesse a url manualmente `http://localhost:3000`.
