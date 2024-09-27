@@ -66,7 +66,7 @@ document.getElementById('downloadForm').addEventListener('submit', function (e) 
                 // Reabilitar o botão e mudar o texto de volta para "Baixar"
                 downloadButton.disabled = false;
                 downloadButton.textContent = 'Baixar';
-            }, 3000); // Esconde a barra de progresso após 3 segundos
+            }, 10000); // Esconde a barra de progresso após 3 segundos
         }
     };
 
@@ -111,7 +111,7 @@ function showNotification(message, isError = false) {
     setTimeout(() => {
         notification.classList.remove('show');
         notification.classList.remove('error');
-    }, 3000);
+    }, 10000);
 }
 
 document.getElementById('clearButton').addEventListener('click', function () {
