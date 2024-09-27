@@ -140,7 +140,7 @@ app.get('/progress', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Acesse a url http://localhost:${PORT} no seu navegador.`);
 });
 
 // Notificar livereload sobre mudanças
