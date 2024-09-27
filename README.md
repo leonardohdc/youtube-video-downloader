@@ -15,7 +15,7 @@
 
 2. **Instale o FFmpeg**:
    - Acesse [https://github.com/BtbN/FFmpeg-Builds/releases](https://github.com/BtbN/FFmpeg-Builds/releases) e baixe a versão "ffmpeg-master-latest-win64-gpl.zip".
-   - Siga as instruções desse video https://www.youtube.com/watch?v=JR36oH35Fgg
+   - Siga as instruções desse video https://youtu.be/JR36oH35Fgg?t=47
 
 3. **Instale o python**:
    - Acesse [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) e baixe a versão "Download Windows Installer" da Stable Releases.
