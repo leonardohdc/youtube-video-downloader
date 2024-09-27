@@ -51,9 +51,14 @@
         </div>
 
         <button id="downloadButton" type="submit" disabled>Baixar</button>
+
+        <div id="progressContainer">
+            <div id="progressText">Baixando... 0%</div>
+            <div id="progressBar"></div>
+        </div>
     </form>
 
-    <div id="notification">Download concluído com sucesso!</div>
+    <div id="notification" class="notification"></div>
 
     <script src="script.js"></script>
     <script src="http://localhost:35729/livereload.js"></script>

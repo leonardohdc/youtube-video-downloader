@@ -24,7 +24,7 @@ function clearDownloadsFolder() {
 }
 
 // Limpar a pasta downloads no início do servidor
-clearDownloadsFolder();
+// clearDownloadsFolder();
 
 // Configurar livereload
 const liveReloadServer = livereload.createServer();
@@ -37,6 +37,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 function sanitizeFileName(fileName) {
     return fileName.replace(/[<>:"/\\|?*\x00-\x1F]/g, ''); // Remove caracteres inválidos
+}
+
+let clients = [];
+
+function fileExistsWithoutExtension(filePath) {
+    const dir = path.dirname(filePath);
+    const baseName = path.basename(filePath);
+
+    const files = fs.readdirSync(dir);
+    return files.some(file => file.startsWith(baseName));
 }
 
 function downloadMedia(url, quality, mediaType) {
@@ -74,20 +84,30 @@ function downloadMedia(url, quality, mediaType) {
             cleanFileName = sanitizeFileName(cleanFileName); // Sanitiza o nome do arquivo
             const outputFilePath = path.join(__dirname, 'downloads', cleanFileName);
 
-            const downloadCommand = `yt-dlp -f "${format}" -o "${outputFilePath}" "${url}"`;
-            exec(downloadCommand, (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Erro ao baixar o ${mediaType}: ${error.message}`);
-                    reject(cleanFileName);
-                    return;
-                }
-                if (stderr) {
-                    console.error(`stderr: ${stderr}`);
-                    reject(cleanFileName);
-                    return;
-                }
-                console.log(`Baixado: ${stdout}`);
+            // Verificar se o arquivo já existe (ignorando a extensão)
+            if (fileExistsWithoutExtension(outputFilePath)) {
+                clients.forEach(client => client.res.write(`data: ${JSON.stringify({ progress: 100 })}\n\n`));
                 resolve(cleanFileName);
+                return;
+            }
+
+            const downloadCommand = `yt-dlp -f "${format}" -o "${outputFilePath}" "${url}"`;
+            const downloadProcess = exec(downloadCommand);
+
+            downloadProcess.stdout.on('data', (data) => {
+                const progressMatch = data.match(/(\d+(\.\d+)?%)/);
+                if (progressMatch) {
+                    const progress = parseFloat(progressMatch[1]);
+                    clients.forEach(client => client.res.write(`data: ${JSON.stringify({ progress })}\n\n`));
+                }
+            });
+
+            downloadProcess.on('close', (code) => {
+                if (code === 0) {
+                    resolve(cleanFileName);
+                } else {
+                    reject(new Error('Download failed'));
+                }
             });
         });
     });
@@ -103,6 +123,20 @@ app.post('/download', async (req, res) => {
         console.error(`Erro: ${error}`);
         res.status(500).json({ error: `Falha ao baixar o ${mediaType}. "${url}". Verifique a URL e a qualidade.` });
     }
+});
+
+app.get('/progress', (req, res) => {
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.flushHeaders();
+
+    const clientId = Date.now();
+    clients.push({ id: clientId, res });
+
+    req.on('close', () => {
+        clients = clients.filter(client => client.id !== clientId);
+    });
 });
 
 app.listen(PORT, () => {
