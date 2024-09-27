@@ -6,7 +6,7 @@ set SCRIPT_DIR=%~dp0
 cd /d "%SCRIPT_DIR%"
 
 :: Abre uma nova janela do terminal e executa npm install
-start cmd /c "cd /d %SCRIPT_DIR% && echo Instalando dependências... && npm install"
+start cmd /c "cd /d %SCRIPT_DIR% && echo Instalando dependências... && npm install && pip install yt-dlp"
 
 :: Fecha a janela do terminal após a conclusão
 exit
