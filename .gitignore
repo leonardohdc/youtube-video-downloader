@@ -1,5 +1,5 @@
 # Ignorar a pasta node_modules
-node_modules/
+# node_modules/
 
 # Ignorar tudo na pasta downloads
 downloads/
